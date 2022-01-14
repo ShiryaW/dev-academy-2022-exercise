@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App renders the grid component 1`] = `
+<div
+  className="data-grid"
+>
+  <Memo(ForwardRef)
+    columns={
+      Array [
+        Object {
+          "field": "location",
+          "flex": 400,
+          "headerName": "Location",
+          "minWidth": 200,
+        },
+        Object {
+          "field": "datetime",
+          "flex": 400,
+          "headerName": "Time of measurement",
+          "minWidth": 200,
+        },
+        Object {
+          "description": "The type of measurement taken. Possible values are rainfall, pH or temperature.",
+          "field": "sensorType",
+          "flex": 400,
+          "headerName": "Type",
+          "minWidth": 150,
+          "sortable": false,
+        },
+        Object {
+          "field": "value",
+          "flex": 400,
+          "headerName": "Value",
+          "minWidth": 150,
+        },
+      ]
+    }
+    rows={
+      Array [
+        Object {
+          "datetime": 2018-12-31T22:00:00.000Z,
+          "id": 1,
+          "location": "Nooras farm",
+          "sensorType": "pH",
+          "value": "5.88",
+        },
+        Object {
+          "datetime": 2018-12-31T22:00:00.000Z,
+          "id": 2,
+          "location": "PartialTech Research Farm",
+          "sensorType": "pH",
+          "value": "5.90",
+        },
+        Object {
+          "datetime": 2018-12-31T22:00:00.000Z,
+          "id": 3,
+          "location": "Organic Ossi's Impact That Lasts",
+          "sensorType": "pH",
+          "value": "7.17",
+        },
+      ]
+    }
+  />
+</div>
+`;
