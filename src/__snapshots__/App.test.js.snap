@@ -4,6 +4,16 @@ exports[`App renders the grid component 1`] = `
 <div
   className="data-grid"
 >
+  <Toolbar
+    farms={
+      Array [
+        "Friman Metsola",
+        "Noora's farm",
+        "Organic Ossis's Impact That Lasts",
+        "Partial Tech",
+      ]
+    }
+  />
   <Memo(ForwardRef)
     columns={
       Array [

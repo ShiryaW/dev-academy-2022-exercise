@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toolbar renders the toolbar with only the all button if no farm names are supplied 1`] = `
+<div
+  id="toolbar"
+>
+  <ForwardRef(ButtonGroup)
+    disableElevation={true}
+    fullWidth={true}
+    variant="contained"
+  >
+    <ForwardRef(Button)>
+      All
+    </ForwardRef(Button)>
+  </ForwardRef(ButtonGroup)>
+</div>
+`;
+
+exports[`Toolbar renders the toolbar with toggle buttons for each farm 1`] = `
+<div
+  id="toolbar"
+>
+  <ForwardRef(ButtonGroup)
+    disableElevation={true}
+    fullWidth={true}
+    variant="contained"
+  >
+    <ForwardRef(Button)>
+      All
+    </ForwardRef(Button)>
+    <ForwardRef(Button)
+      key="0"
+    >
+      Friman Metsola
+    </ForwardRef(Button)>
+    <ForwardRef(Button)
+      key="1"
+    >
+      Noora's farm
+    </ForwardRef(Button)>
+    <ForwardRef(Button)
+      key="2"
+    >
+      Organic Ossis's Impact That Lasts
+    </ForwardRef(Button)>
+    <ForwardRef(Button)
+      key="3"
+    >
+      Partial Tech
+    </ForwardRef(Button)>
+  </ForwardRef(ButtonGroup)>
+</div>
+`;

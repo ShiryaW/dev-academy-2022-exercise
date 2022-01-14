@@ -16,5 +16,10 @@
 .data-grid {
   width: 96vw;
   margin: 2vh;
-  height: 96vh;
+  height: 90vh;
+}
+
+#toolbar {
+  min-width: 929px;
+  margin-bottom: 2vh;
 }

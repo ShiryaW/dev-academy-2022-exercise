@@ -1,6 +1,7 @@
 import "./App.css";
 import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
+import { Toolbar } from "./Toolbar";
 
 /* NOTES TO SELF:
   What kind of questions can we answer?
@@ -38,6 +39,12 @@ export const App = () => {
   ];
 
   // dummy rows for now
+  const farms = [
+    "Friman Metsola",
+    "Noora's farm",
+    "Organic Ossis's Impact That Lasts",
+    "Partial Tech",
+  ];
   const rows = [
     {
       id: 1,
@@ -64,6 +71,7 @@ export const App = () => {
 
   return (
     <div className="data-grid">
+      <Toolbar farms={farms} />
       <DataGrid columns={columns} rows={rows} />
     </div>
   );
