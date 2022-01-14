@@ -1,7 +1,14 @@
 import "./App.css";
-import React from "react";
+import PropTypes from "prop-types";
+import React, { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { Toolbar } from "./Toolbar";
+import { Toolbar } from "./Toolbar.js";
+import {
+  fetchFarmNames,
+  getFarmStats,
+  getStatsForAll,
+} from "./util/dataFetcher";
+import { FARM_IDS } from "./util/constants";
 
 /* NOTES TO SELF:
   What kind of questions can we answer?
@@ -13,6 +20,14 @@ import { Toolbar } from "./Toolbar";
 
 export const App = () => {
   const maxColWidth = 400;
+  const [farmNames, setFarmNames] = useState([]);
+  const [rows, setRowData] = useState([]);
+
+  useEffect(async () => {
+    const names = await fetchFarmNames();
+    setFarmNames(names);
+  }, []);
+
   const columns = [
     {
       field: "location",
@@ -27,7 +42,7 @@ export const App = () => {
       flex: maxColWidth,
     },
     {
-      field: "sensorType",
+      field: "sensor_type",
       headerName: "Type",
       minWidth: 150,
       flex: maxColWidth,
@@ -38,41 +53,30 @@ export const App = () => {
     { field: "value", headerName: "Value", minWidth: 150, flex: maxColWidth },
   ];
 
-  // dummy rows for now
-  const farms = [
-    "Friman Metsola",
-    "Noora's farm",
-    "Organic Ossis's Impact That Lasts",
-    "Partial Tech",
-  ];
-  const rows = [
-    {
-      id: 1,
-      location: "Nooras farm",
-      datetime: new Date("2018-12-31T22:00:00.000Z"),
-      sensorType: "pH",
-      value: "5.88",
-    },
-    {
-      id: 2,
-      location: "PartialTech Research Farm",
-      datetime: new Date("2018-12-31T22:00:00.000Z"),
-      sensorType: "pH",
-      value: "5.90",
-    },
-    {
-      id: 3,
-      location: "Organic Ossi's Impact That Lasts",
-      datetime: new Date("2018-12-31T22:00:00.000Z"),
-      sensorType: "pH",
-      value: "7.17",
-    },
-  ];
+  const handleButtonClick = async ({ target }) => {
+    const targetFarm = FARM_IDS[target.textContent];
+
+    if (targetFarm) {
+      await getFarmStats(targetFarm).then((data) => generateRows(data));
+    } else {
+      await getStatsForAll().then((data) => generateRows(data));
+    }
+  };
+
+  const generateRows = async ({ measurements }) => {
+    const rowData = measurements.map((row, idx) => ({ ...row, id: idx }));
+    setRowData(rowData);
+  };
 
   return (
     <div className="data-grid">
-      <Toolbar farms={farms} />
+      <Toolbar farms={farmNames} onButtonClick={handleButtonClick} />
       <DataGrid columns={columns} rows={rows} />
     </div>
   );
+};
+
+App.propTypes = {
+  serviceUrl: PropTypes.string.isRequired,
+  port: PropTypes.number.isRequired,
 };
