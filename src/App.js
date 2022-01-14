@@ -1,22 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import React from "react";
+
+/* NOTES TO SELF:
+  What kind of questions can we answer?
+  1) Is there a correlation between rainfall/pH/temperature on a given farm?
+  2) Which farm gets the most rainfall/has the highest pH/highest temperature?
+  3) How has the value of X progressed over time on a given farm?
+  4) What are the average values of X on each farm?
+ */
 
 function App() {
   return (
-    <div className="App">
+    <div className="Farm Data Visualizer">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );
