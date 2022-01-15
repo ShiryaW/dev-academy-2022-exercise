@@ -1,3 +1,11 @@
+export const SERVICE_URL = "http://localhost";
+export const SERVICE_PORT = 8080;
+
+export const ERRORS = {
+  MISSING_DATE: "Date missing",
+  MALFORMED_INPUT: "Malformed input",
+};
+
 export const FARM_NAMES = {
   FRIMAN: "Friman Metsola Collective",
   PARTIALTECH: "PartialTech Research Farm",

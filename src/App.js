@@ -9,6 +9,7 @@ import {
   getStatsForAll,
 } from "./util/dataFetcher";
 import { FARM_IDS } from "./util/constants";
+import { getDate } from "./util/dateParser";
 
 /* NOTES TO SELF:
   What kind of questions can we answer?
@@ -64,7 +65,11 @@ export const App = () => {
   };
 
   const generateRows = async ({ measurements }) => {
-    const rowData = measurements.map((row, idx) => ({ ...row, id: idx }));
+    const rowData = measurements.map((row, idx) => ({
+      ...row,
+      id: idx,
+      datetime: getDate(row.datetime),
+    }));
     setRowData(rowData);
   };
 
