@@ -10,6 +10,7 @@ import {
 } from "./util/dataFetcher";
 import { FARM_IDS } from "./util/constants";
 import { getDate } from "./util/dateParser";
+import { Chart } from "./Chart";
 
 /* NOTES TO SELF:
   What kind of questions can we answer?
@@ -70,15 +71,22 @@ export const App = () => {
       ...row,
       id: idx,
       datetime: getDate(row.datetime),
+      datetime_raw: row.datetime,
     }));
-    setRowData(rowData);
+    setRowData([...rowData]);
   };
 
+  //TODO: Why won't the chart ever rerender???
+  //TODO: Make it customizable
+  //TODO: Send help
   return (
-    <div className="data-grid">
-      <Toolbar farms={farmNames} onButtonClick={handleButtonClick} />
-      <DataGrid columns={columns} rows={rows} />
-    </div>
+    <>
+      {rows.length > 0 && <Chart data={rows} sensorType={"temperature"} />}
+      <div className="data-grid">
+        <Toolbar farms={farmNames} onButtonClick={handleButtonClick} />
+        <DataGrid columns={columns} rows={rows} />
+      </div>
+    </>
   );
 };
 

@@ -19,3 +19,13 @@ export const FARM_IDS = {
   [FARM_NAMES.NOORA]: 3,
   [FARM_NAMES.OSSI]: 4,
 };
+
+export const FIELD_KEYS = {
+  DATETIME: "datetime",
+  DATETIME_RAW: "datetime_raw",
+  FARM_ID: "farm_id",
+  ID: "id",
+  LOCATION: "location",
+  SENSOR_TYPE: "sensor_type",
+  VALUE: "value",
+};

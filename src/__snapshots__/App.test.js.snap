@@ -1,45 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App renders the grid component 1`] = `
-<div
-  className="data-grid"
->
-  <Toolbar
-    farms={Array []}
-    onButtonClick={[Function]}
-  />
-  <Memo(ForwardRef)
-    columns={
-      Array [
-        Object {
-          "field": "location",
-          "flex": 400,
-          "headerName": "Location",
-          "minWidth": 200,
-        },
-        Object {
-          "field": "datetime",
-          "flex": 400,
-          "headerName": "Time of measurement",
-          "minWidth": 200,
-        },
-        Object {
-          "description": "The type of measurement taken. Possible values are rainfall, pH or temperature.",
-          "field": "sensor_type",
-          "flex": 400,
-          "headerName": "Type",
-          "minWidth": 150,
-          "sortable": false,
-        },
-        Object {
-          "field": "value",
-          "flex": 400,
-          "headerName": "Value",
-          "minWidth": 150,
-        },
-      ]
-    }
-    rows={Array []}
-  />
-</div>
+<Fragment>
+  <div
+    className="data-grid"
+  >
+    <Toolbar
+      farms={Array []}
+      onButtonClick={[Function]}
+    />
+    <Memo(ForwardRef)
+      columns={
+        Array [
+          Object {
+            "field": "location",
+            "flex": 400,
+            "headerName": "Location",
+            "minWidth": 200,
+          },
+          Object {
+            "field": "datetime",
+            "flex": 400,
+            "headerName": "Time of measurement",
+            "minWidth": 200,
+          },
+          Object {
+            "description": "The type of measurement taken. Possible values are rainfall, pH or temperature.",
+            "field": "sensor_type",
+            "flex": 400,
+            "headerName": "Type",
+            "minWidth": 150,
+            "sortable": false,
+          },
+          Object {
+            "field": "value",
+            "flex": 400,
+            "headerName": "Value",
+            "minWidth": 150,
+          },
+        ]
+      }
+      rows={Array []}
+    />
+  </div>
+</Fragment>
 `;
