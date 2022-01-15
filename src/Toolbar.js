@@ -20,7 +20,9 @@ export const Toolbar = ({ farms, onButtonClick }) => {
     <div id="toolbar">
       <ButtonGroup disableElevation={true} fullWidth={true} variant="contained">
         {!hasLoaded ? (
-          <Button key="loading">Loading farm data...</Button>
+          <Button key="loading" disabled={true}>
+            Loading farm data...
+          </Button>
         ) : (
           <>
             <Button key="all" onClick={onButtonClick}>

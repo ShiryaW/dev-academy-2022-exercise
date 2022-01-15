@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolbar renders the toolbar with only the all button if no farm names are supplied 1`] = `
+exports[`Toolbar renders the toolbar with loading text if no farms are supplied (have not loaded yet) 1`] = `
 <div
   id="toolbar"
 >
@@ -9,8 +9,11 @@ exports[`Toolbar renders the toolbar with only the all button if no farm names a
     fullWidth={true}
     variant="contained"
   >
-    <ForwardRef(Button)>
-      All
+    <ForwardRef(Button)
+      disabled={true}
+      key="loading"
+    >
+      Loading farm data...
     </ForwardRef(Button)>
   </ForwardRef(ButtonGroup)>
 </div>
@@ -25,26 +28,33 @@ exports[`Toolbar renders the toolbar with toggle buttons for each farm 1`] = `
     fullWidth={true}
     variant="contained"
   >
-    <ForwardRef(Button)>
+    <ForwardRef(Button)
+      key="all"
+      onClick={[MockFunction]}
+    >
       All
     </ForwardRef(Button)>
     <ForwardRef(Button)
       key="0"
+      onClick={[MockFunction]}
     >
       Friman Metsola
     </ForwardRef(Button)>
     <ForwardRef(Button)
       key="1"
+      onClick={[MockFunction]}
     >
       Noora's farm
     </ForwardRef(Button)>
     <ForwardRef(Button)
       key="2"
+      onClick={[MockFunction]}
     >
       Organic Ossis's Impact That Lasts
     </ForwardRef(Button)>
     <ForwardRef(Button)
       key="3"
+      onClick={[MockFunction]}
     >
       Partial Tech
     </ForwardRef(Button)>

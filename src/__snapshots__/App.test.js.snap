@@ -5,14 +5,8 @@ exports[`App renders the grid component 1`] = `
   className="data-grid"
 >
   <Toolbar
-    farms={
-      Array [
-        "Friman Metsola",
-        "Noora's farm",
-        "Organic Ossis's Impact That Lasts",
-        "Partial Tech",
-      ]
-    }
+    farms={Array []}
+    onButtonClick={[Function]}
   />
   <Memo(ForwardRef)
     columns={
@@ -31,7 +25,7 @@ exports[`App renders the grid component 1`] = `
         },
         Object {
           "description": "The type of measurement taken. Possible values are rainfall, pH or temperature.",
-          "field": "sensorType",
+          "field": "sensor_type",
           "flex": 400,
           "headerName": "Type",
           "minWidth": 150,
@@ -45,31 +39,7 @@ exports[`App renders the grid component 1`] = `
         },
       ]
     }
-    rows={
-      Array [
-        Object {
-          "datetime": 2018-12-31T22:00:00.000Z,
-          "id": 1,
-          "location": "Nooras farm",
-          "sensorType": "pH",
-          "value": "5.88",
-        },
-        Object {
-          "datetime": 2018-12-31T22:00:00.000Z,
-          "id": 2,
-          "location": "PartialTech Research Farm",
-          "sensorType": "pH",
-          "value": "5.90",
-        },
-        Object {
-          "datetime": 2018-12-31T22:00:00.000Z,
-          "id": 3,
-          "location": "Organic Ossi's Impact That Lasts",
-          "sensorType": "pH",
-          "value": "7.17",
-        },
-      ]
-    }
+    rows={Array []}
   />
 </div>
 `;
