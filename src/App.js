@@ -26,6 +26,7 @@ export const App = () => {
 
   useEffect(async () => {
     const names = await fetchFarmNames();
+    if (names.error) return;
     setFarmNames(names);
   }, []);
 

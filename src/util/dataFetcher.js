@@ -1,7 +1,12 @@
 import { FARM_IDS } from "./constants";
 
 export const fetchFarmNames = async () => {
-  const body = await fetch(`v1/farms`).then((res) => res.json());
+  const res = await fetch(`v1/farms`);
+
+  if (res.status !== 200) return { error: res.statusText };
+
+  const body = await res.json();
+
   return body.map(({ farm_id, name }) => {
     return {
       id: farm_id,
@@ -11,7 +16,11 @@ export const fetchFarmNames = async () => {
 };
 
 export const getFarmStats = async (farm) => {
-  return await fetch(`/v1/farms/${farm}/stats`).then((res) => res.json());
+  const res = await fetch(`/v1/farms/${farm}/stats`);
+
+  if (res.status !== 200) return { error: res.statusText };
+
+  return await res.json();
 };
 
 export const getStatsForAll = async () => {
