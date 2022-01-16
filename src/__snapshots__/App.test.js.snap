@@ -30,6 +30,7 @@ exports[`App renders the grid component 1`] = `
             "flex": 400,
             "headerName": "Time of measurement",
             "minWidth": 200,
+            "sortComparator": [Function],
           },
           Object {
             "description": "The type of measurement taken. Possible values are rainfall, pH or temperature.",

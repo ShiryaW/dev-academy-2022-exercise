@@ -11,6 +11,7 @@ import {
 import { ALL, FARM_IDS, FIELD_KEYS, SENSOR_TYPES } from "./util/constants";
 import { getDate } from "./util/dateParser";
 import { Chart } from "./Chart";
+import { datesort } from "./util/sorter";
 
 /* NOTES TO SELF:
   What kind of questions can we answer?
@@ -44,6 +45,7 @@ export const App = () => {
       field: FIELD_KEYS.DATETIME,
       headerName: "Time of measurement",
       minWidth: 200,
+      sortComparator: datesort,
       flex: maxColWidth,
     },
     {
