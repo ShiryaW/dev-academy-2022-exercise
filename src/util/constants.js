@@ -1,5 +1,6 @@
 export const SERVICE_URL = "http://localhost";
 export const SERVICE_PORT = 8080;
+export const ALL = "all";
 
 export const ERRORS = {
   MISSING_DATE: "Date missing",
@@ -28,4 +29,10 @@ export const FIELD_KEYS = {
   LOCATION: "location",
   SENSOR_TYPE: "sensor_type",
   VALUE: "value",
+};
+
+export const SENSOR_TYPES = {
+  TEMPERATURE: "temperature",
+  RAINFALL: "rainfall",
+  PH: "pH",
 };

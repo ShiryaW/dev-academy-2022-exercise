@@ -8,7 +8,9 @@
     "npm": ">=6.4.13"
   },
   "scripts": {
-    "start": "node_modules/.bin/react-scripts start",
+    "start": "run-p start-server start-client",
+    "start-client": "node_modules/.bin/react-scripts start",
+    "start-server": "java -jar bin/exercise-server.jar",
     "build": "node_modules/.bin/react-scripts build",
     "test": "node_modules/.bin/react-scripts test",
     "test-client": "jest --config ./src/config/jest.config.json",
@@ -48,9 +50,9 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
+    "react-vega": "^7.4.4",
     "vega": "^5.21.0",
-    "vega-lite": "^5.2.0",
-    "vega-lite-api": "^5.0.0"
+    "vega-lite": "^5.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",
@@ -67,6 +69,7 @@
     "husky": "^4.3.8",
     "identity-obj-proxy": "^3.0.0",
     "jest-fetch-mock": "^3.0.3",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.5.1",
     "prop-types": "^15.8.1"
   }

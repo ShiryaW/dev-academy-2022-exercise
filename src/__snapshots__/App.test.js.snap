@@ -2,13 +2,20 @@
 
 exports[`App renders the grid component 1`] = `
 <Fragment>
+  <Toolbar
+    farms={Array []}
+    onButtonClick={[Function]}
+  />
+  <Chart
+    data={
+      Object {
+        "measurements": Array [],
+      }
+    }
+  />
   <div
     className="data-grid"
   >
-    <Toolbar
-      farms={Array []}
-      onButtonClick={[Function]}
-    />
     <Memo(ForwardRef)
       columns={
         Array [

@@ -1,20 +1,7 @@
 import PropTypes from "prop-types";
-import React, { useEffect } from "react";
-import * as vega from "vega";
-import * as vegaLite from "vega-lite";
-import * as vl from "vega-lite-api";
-import { FIELD_KEYS } from "./util/constants";
-
-const config = {
-  style: {
-    "guide-label": {
-      fontSize: 20,
-    },
-    "guide-title": {
-      fontSize: 30,
-    },
-  },
-};
+import React, { useEffect, useState } from "react";
+import { VegaLite } from "react-vega";
+import { ALL, FIELD_KEYS } from "./util/constants";
 
 /* Example data entry:
   {
@@ -28,44 +15,76 @@ const config = {
    }
  */
 
-export const Chart = ({ data, sensorType }) => {
-  const chartRef = React.createRef();
+const specBase = {
+  width: 1000,
+  height: 300,
+  data: { name: "measurements" },
+  mark: "area",
+  autosize: {
+    resize: true,
+  },
+  encoding: {
+    x: { field: FIELD_KEYS.DATETIME_RAW, type: "temporal", title: "Time" },
+    y: { field: FIELD_KEYS.VALUE, type: "quantitative", title: "Value" },
+  },
+};
+
+const specAllTypesAndFarms = {
+  ...specBase,
+  encoding: {
+    color: { field: FIELD_KEYS.SENSOR_TYPE, type: "nominal", title: "Type" },
+  },
+};
+
+export const Chart = ({ data, sensorType, selectedFarm }) => {
+  const [spec, setSpec] = useState(specAllTypesAndFarms);
 
   useEffect(() => {
-    vl.register(vega, vegaLite, {
-      view: { renderer: "svg" },
-    });
+    getSpec(data.measurements, sensorType, selectedFarm);
+  }, [data]);
 
-    drawChart(filteredData).then((chart) => {
-      chartRef.current.appendChild(chart);
-    });
-  }, []);
-
-  const filterEntriesBySensorType = (type, data) => {
-    return data.filter((entry) => entry[FIELD_KEYS.SENSOR_TYPE] === type);
+  const getTypeFilter = (sensorType) => {
+    return {
+      transform: [
+        {
+          filter: {
+            field: FIELD_KEYS.SENSOR_TYPE,
+            equal: sensorType,
+          },
+        },
+      ],
+    };
   };
 
-  const filteredData = filterEntriesBySensorType(sensorType, data);
+  const getSpec = (data, sensorType, selectedFarm) => {
+    let spec = {
+      ...specBase,
+      ...getTypeFilter(sensorType),
+    };
 
-  const drawChart = (data) => {
-    return vl
-      .markLine()
-      .data(data)
-      .encode(
-        vl.x().fieldT(FIELD_KEYS.DATETIME_RAW).title("Time"),
-        vl.y().fieldQ(FIELD_KEYS.VALUE).title("Value")
-      )
-      .width(800)
-      .height(600)
-      .autosize({ type: "fit" })
-      .config(config)
-      .render();
+    if (selectedFarm === ALL) {
+      spec.encoding = {
+        ...specBase.encoding,
+        color: {
+          field: FIELD_KEYS.LOCATION,
+          type: "nominal",
+          title: "Location",
+        },
+      };
+    }
+
+    setSpec(spec);
   };
 
-  return React.createElement("div", { ref: chartRef });
+  return (
+    <div id="chart">
+      <VegaLite spec={spec} data={{ measurements: data.measurements }} />
+    </div>
+  );
 };
 
 Chart.propTypes = {
-  data: PropTypes.array.isRequired,
-  sensorType: PropTypes.string.isRequired,
+  data: PropTypes.object,
+  sensorType: PropTypes.string,
+  selectedFarm: PropTypes.string,
 };

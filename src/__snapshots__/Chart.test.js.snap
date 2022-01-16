@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chart renders the chart component empty when no data is supplied 1`] = `
+<div
+  id="chart"
+>
+  <VegaLite
+    data={
+      Object {
+        "measurements": Array [],
+      }
+    }
+    spec={
+      Object {
+        "autosize": Object {
+          "resize": true,
+        },
+        "data": Object {
+          "name": "measurements",
+        },
+        "encoding": Object {
+          "color": Object {
+            "field": "sensor_type",
+            "title": "Type",
+            "type": "nominal",
+          },
+        },
+        "height": 300,
+        "mark": "area",
+        "width": 1000,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`Chart renders the chart component with filtered data for temperature 1`] = `
+<div
+  id="chart"
+>
+  <VegaLite
+    data={
+      Object {
+        "measurements": Array [
+          Object {
+            "datetime": "2018-12-31T22:00:00.000Z",
+            "farm_id": "1",
+            "location": "Friman Metsola collective",
+            "sensor_type": "ph",
+            "value": 6.52,
+          },
+          Object {
+            "datetime": "2018-12-31T22:00:00.000Z",
+            "farm_id": "1",
+            "location": "Friman Metsola collective",
+            "sensor_type": "rainfall",
+            "value": 2.6,
+          },
+          Object {
+            "datetime": "2019-01-01T06:09:47.373Z",
+            "farm_id": "1",
+            "location": "Friman Metsola collective",
+            "sensor_type": "temperature",
+            "value": -9,
+          },
+          Object {
+            "datetime": "2019-01-01T21:04:09.813Z",
+            "farm_id": "1",
+            "location": "Friman Metsola collective",
+            "sensor_type": "temperature",
+            "value": -12.2,
+          },
+        ],
+      }
+    }
+    spec={
+      Object {
+        "autosize": Object {
+          "resize": true,
+        },
+        "data": Object {
+          "name": "measurements",
+        },
+        "encoding": Object {
+          "color": Object {
+            "field": "sensor_type",
+            "title": "Type",
+            "type": "nominal",
+          },
+        },
+        "height": 300,
+        "mark": "area",
+        "width": 1000,
+      }
+    }
+  />
+</div>
+`;

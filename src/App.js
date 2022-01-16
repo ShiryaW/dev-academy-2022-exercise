@@ -8,7 +8,7 @@ import {
   getFarmStats,
   getStatsForAll,
 } from "./util/dataFetcher";
-import { FARM_IDS } from "./util/constants";
+import { ALL, FARM_IDS, FIELD_KEYS, SENSOR_TYPES } from "./util/constants";
 import { getDate } from "./util/dateParser";
 import { Chart } from "./Chart";
 
@@ -23,6 +23,8 @@ import { Chart } from "./Chart";
 export const App = () => {
   const maxColWidth = 400;
   const [farmNames, setFarmNames] = useState([]);
+  const [selectedFarm, setSelectedFarm] = useState(ALL);
+  const [chartTable, setChartTable] = useState({ measurements: [] });
   const [rows, setRowData] = useState([]);
 
   useEffect(async () => {
@@ -33,19 +35,19 @@ export const App = () => {
 
   const columns = [
     {
-      field: "location",
+      field: FIELD_KEYS.LOCATION,
       headerName: "Location",
       minWidth: 200,
       flex: maxColWidth,
     },
     {
-      field: "datetime",
+      field: FIELD_KEYS.DATETIME,
       headerName: "Time of measurement",
       minWidth: 200,
       flex: maxColWidth,
     },
     {
-      field: "sensor_type",
+      field: FIELD_KEYS.SENSOR_TYPE,
       headerName: "Type",
       minWidth: 150,
       flex: maxColWidth,
@@ -53,15 +55,22 @@ export const App = () => {
         "The type of measurement taken. Possible values are rainfall, pH or temperature.",
       sortable: false,
     },
-    { field: "value", headerName: "Value", minWidth: 150, flex: maxColWidth },
+    {
+      field: FIELD_KEYS.VALUE,
+      headerName: "Value",
+      minWidth: 150,
+      flex: maxColWidth,
+    },
   ];
 
   const handleButtonClick = async ({ target }) => {
     const targetFarm = FARM_IDS[target.textContent];
 
     if (targetFarm) {
+      setSelectedFarm(target.textContent);
       await getFarmStats(targetFarm).then((data) => generateRows(data));
     } else {
+      setSelectedFarm(ALL);
       await getStatsForAll().then((data) => generateRows(data));
     }
   };
@@ -73,17 +82,23 @@ export const App = () => {
       datetime: getDate(row.datetime),
       datetime_raw: row.datetime,
     }));
+    setChartTable({ measurements: rowData });
     setRowData([...rowData]);
   };
 
-  //TODO: Why won't the chart ever rerender???
-  //TODO: Make it customizable
-  //TODO: Send help
   return (
     <>
-      {rows.length > 0 && <Chart data={rows} sensorType={"temperature"} />}
+      <Toolbar farms={farmNames} onButtonClick={handleButtonClick} />
+      {rows.length > 0 ? (
+        <Chart
+          data={chartTable}
+          sensorType={SENSOR_TYPES.TEMPERATURE}
+          selectedFarm={selectedFarm}
+        />
+      ) : (
+        <Chart data={chartTable} />
+      )}
       <div className="data-grid">
-        <Toolbar farms={farmNames} onButtonClick={handleButtonClick} />
         <DataGrid columns={columns} rows={rows} />
       </div>
     </>
