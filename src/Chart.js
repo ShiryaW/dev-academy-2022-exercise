@@ -25,7 +25,7 @@ const specBase = {
   },
   encoding: {
     x: { field: FIELD_KEYS.DATETIME_RAW, type: "temporal", title: "Time" },
-    y: { field: FIELD_KEYS.VALUE, type: "quantitative", title: "Value" },
+    y: { field: FIELD_KEYS.VALUE, type: "quantitative", title: "Temperature" },
   },
 };
 

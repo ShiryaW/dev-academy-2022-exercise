@@ -1,93 +1,47 @@
 # Farm data exercise
-Solita has received an interesting project offer to create a UI and a backend for displaying data from different farms.
+A simple web UI that displays data from different farms. The data can be filtered 
+and sorted by date, value, or location.
+The UI also generates charts showing temperature changes over time.
 
-Data has been received from the next farms:
-* Noora's farm
-* Friman Metsola collective
-* Organic Ossi's Impact That Lasts plantation 
-* PartialTech Research Farm
+## Installation
 
-Data is received as csv-files which need to be parsed for processing.
+#### With npm:
+- install Java (version 8 or higher), nodeJS (v14+) and npm (v6) on your machine
+- run `npm install` to install dependencies
+- `npm start` to run the app on `http://localhost:3000`
 
-Data format is
-`[Farm name], [datetime or date],[metric type], [metric value]`
+#### Using the Docker image:
+- install Docker, nodeJS (v14+) and npm (v6) on your machine
+- run `npm install` to install dependencies
+- `docker build -t {your-image-name} .` to build the Docker image for the backend
+- (You can verify that the image has been built successfully with `docker images`)
+- `docker run --rm -d --name server -p 8080:8080 {your-image-name}` to run the backend
+- `npm run start-client` to run the frontend
+- (When you're done, stop the server by running `docker stop server`)
 
-Example:
-`PartialTech Research Farm,2018-12-31T22:00:00.000Z,rainFall,1.4`
+## Testing
 
-The data can contain errors, so it should be validated before use.
+To run unit tests, use `npm run test-client`.
 
-## The exercise
+For E2E testcafe tests, first run the app with `npm start` and then run `npm run test-testcafe`.
+By default this command uses Chrome. If you would like to run the tests in firefox,
+run `npm run test-testcafe-firefox`.
 
-### Fullstack version
-Create a web application or mobile application which uses backend to fetch the data.
+Use `npm run lint-client` to run the linter.
 
-Backend can be made with any technology. We at Solita use for example (not in preference order) Java/Kotlin/Clojure/C#/Typescript/Golang but
-you are free to choose any other technology as well. 
+## Known issues
+- The temperature chart does not get generated until the second rerender for some reason
+- Testcafe tests rely on specific data existing in specific cells (which works but would be 
+better to avoid)
 
-Backend can use a database, or it can be memory based. Real database use is preferable choice because it allows you to show broader skills.
+## Improvements I ran out of time for
+- redraw the chart based on some user input e.g. show pH over time, rainfall over time
+- add the ability for the user to specify a time range
+- multiple charts for multiple metrics!
+- make the chart(s) interactable e.g. with tooltips
+- calculate average rainfall/pH/temperature (in a specified time range)
 
-You can also freely choose the frontend (and possibly mobile) technologies to use. The important part is to give good instructions how to run the project.
+I wanted to do all of the above but did not because learning how to work with my chosen
+data visualization library was too time-consuming and not my top priority in this exercise.
 
-### Frontend version
-Create a frontend or a mobile application which uses the provided simple server. 
-
-Technology choices are not limited.
-
-We take less applicants for frontend/mobile only positions so building a fullstack version gives you more options.
-
-## Stuff to do
-Important! 
-
-Doing all of these is not needed for a good exercise result. 
-
-Instead of implementing more features you may consider to concentrate on:
-* Good Readme
-* Git History
-* Tests
-* Get features completed
-* Writing good code
-
-You can read more about tips from Solita Dev Blog:
-[Do's and Dont's of Dev Academy Pre-assignments](https://dev.solita.fi/2021/11/04/how-to-pre-assignments.html)
-
-## Backend
-* CSV parsing and validation
-* Endpoints to fetch data from farms with different granularities (by month, by metric)
-* Aggregate calculation endpoints, endpoint which returns monthly averages, min/max and other statistical analysis
-* Add tests
-* Input and output validation
-
-## Frontend
-* Show data in table format 
-* Add filtering options 
-* Add tests (fex. React testing library)
-* Show data in graphs
-
-### Nice to have
-* Endpoints to store new farms and new data
-* Add User management
-* Running backend in Docker
-* Running backend in Cloud
-* Add a map which shows the location of the farms and which can be interacted with (you can decide where the farms are)
-* Add E2E tests
-* Add UI for adding data to farms and creating new farms
-* Add User login for data manipulation
-
-## Returning the exercise
-Return the exercise as a link to your GitHub repository.
-
-## Validation rules
-* Accept only temperature,rainfall and PH data. Other metrics should be discarded
-* Discard invalid values with next rules  
-* pH is a decimal value between 0 - 14
-* Temperature is a celsius value between -50 and 100
-* Rainfall is a positive number between 0 and 500
-* Data may be missing from certain dates
-
-## Running the server for frontend project
-* Install Java runtime environment (version 8 or newer)
-* Clone the repository
-* start the server with command `java -jar bin/exercise-server.jar`
-* You can view OpenApi-documentation from http://localhost:8080
-* Create a GitHub issue if you run in problems with the server
+- Add a fakeAPI for when the client is being run without the server

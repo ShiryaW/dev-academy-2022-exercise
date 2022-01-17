@@ -12,7 +12,6 @@
     "start-client": "node_modules/.bin/react-scripts start",
     "start-server": "java -jar bin/exercise-server.jar",
     "build": "node_modules/.bin/react-scripts build",
-    "test": "node_modules/.bin/react-scripts test",
     "test-client": "jest --config ./src/config/jest.config.json",
     "test-testcafe": "testcafe chrome src/testcafe/ --hostname localhost",
     "test-testcafe-firefox": "testcafe firefox src/testcafe/ --hostname localhost",
