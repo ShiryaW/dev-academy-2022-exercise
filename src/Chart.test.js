@@ -2,9 +2,20 @@ import React from "react";
 import { shallow } from "enzyme";
 import { Chart } from "./Chart";
 import { VegaLite } from "react-vega";
+import { ALL, SENSOR_TYPES } from "./util/constants";
 
 const createChart = (props) =>
-  shallow(<Chart {...{ data: { measurements: [] }, ...props }} />);
+  shallow(
+    <Chart
+      {...{
+        data: {
+          measurements: [],
+        },
+        selectedFarm: ALL,
+        ...props,
+      }}
+    />
+  );
 
 const testData = {
   measurements: [
@@ -52,7 +63,10 @@ describe("Chart", () => {
   });
 
   it("renders the chart component with filtered data for temperature", () => {
-    const wrapper = createChart({ data: testData });
+    const wrapper = createChart({
+      data: testData,
+      sensorType: SENSOR_TYPES.TEMPERATURE,
+    });
     const chartInstance = wrapper.find(VegaLite);
 
     expect(chartInstance.props().data.measurements).toEqual(

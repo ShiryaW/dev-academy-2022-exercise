@@ -24,6 +24,16 @@ exports[`Chart renders the chart component empty when no data is supplied 1`] = 
             "title": "Type",
             "type": "nominal",
           },
+          "x": Object {
+            "field": "datetime_raw",
+            "title": "Time",
+            "type": "temporal",
+          },
+          "y": Object {
+            "field": "value",
+            "title": "Temperature",
+            "type": "quantitative",
+          },
         },
         "height": 300,
         "mark": "area",
@@ -86,6 +96,16 @@ exports[`Chart renders the chart component with filtered data for temperature 1`
             "field": "sensor_type",
             "title": "Type",
             "type": "nominal",
+          },
+          "x": Object {
+            "field": "datetime_raw",
+            "title": "Time",
+            "type": "temporal",
+          },
+          "y": Object {
+            "field": "value",
+            "title": "Temperature",
+            "type": "quantitative",
           },
         },
         "height": 300,

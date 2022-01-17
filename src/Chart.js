@@ -32,6 +32,7 @@ const specBase = {
 const specAllTypesAndFarms = {
   ...specBase,
   encoding: {
+    ...specBase.encoding,
     color: { field: FIELD_KEYS.SENSOR_TYPE, type: "nominal", title: "Type" },
   },
 };
